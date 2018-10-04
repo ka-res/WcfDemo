@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Service="MessageService" Factory="Castle.Facilities.WcfIntegration.DefaultServiceHostFactory, Castle.Facilities.WcfIntegration" %>
