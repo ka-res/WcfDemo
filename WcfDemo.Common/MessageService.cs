@@ -3,7 +3,7 @@ using WcfDemo.Common.Helpers;
 using WcfDemo.Contracts;
 using WcfServiceDemo.Repositories.Interfaces;
 
-namespace WcfDemo.Common
+namespace WcfDemo
 {
     public class MessageService : IMessageService
     {
@@ -32,7 +32,6 @@ namespace WcfDemo.Common
             try
             {
                 messageResponse = SmtpClientHelper.SendMessage(message);
-                //todo repo
             }
             catch (Exception)
             {
@@ -48,7 +47,7 @@ namespace WcfDemo.Common
                 : new MessageResponse
                     {
                         ReturnCode = ReturnCode.InternalError,
-                        ErrorMessage = ""
+                        ErrorMessage = null
                     };
         }
     }

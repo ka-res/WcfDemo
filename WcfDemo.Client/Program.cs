@@ -5,7 +5,7 @@ using System;
 using System.ServiceModel;
 using WcfDemo.Contracts;
 
-namespace WcfDemo.Client
+namespace WcfDemo
 {
     class Program
     {
@@ -30,7 +30,13 @@ namespace WcfDemo.Client
 
         static void Main(string[] args)
         {
+            Console.WriteLine("~~~ WcfDemo ~~~");
+            Console.WriteLine("Następuje przygotowanie serwisu");
+
             var messageService = _container.Resolve<IMessageService>();
+
+            PrintConsoleLog("Wiadomość jest opracowywana");
+
             var messagRequest = new MessageRequest
             {
                 FirstName = "Testowy",
@@ -46,9 +52,12 @@ namespace WcfDemo.Client
                 }
             };
 
+            PrintConsoleLog("Następuje próba wysłania wiadomości");
+            PrintConsoleLog("Oczekiwanie na odpowiedź serwisu");
+
             var message = messageService.Send(messagRequest);
             var returnMessage = string.Empty;
-
+            
             switch (message.ReturnCode)
             {
                 case ReturnCode.InternalError:
@@ -60,17 +69,25 @@ namespace WcfDemo.Client
                     break;
 
                 case ReturnCode.Success:
-                    returnMessage = $"Wiadomość została wysłana!";
+                    returnMessage = null;
                     break;
 
                 default:
-                    returnMessage = null;
+                    returnMessage = "Wystąpił wewnęrzny błąd serwisu";
                     break;
             }
 
-            PrintMessage(!string.IsNullOrEmpty(returnMessage)
+            returnMessage += message.ReturnCode == ReturnCode.Success
                 ? returnMessage
-                : $"Nie udało się uzyskać odpowiedzi");
+                : Environment.NewLine + message.ErrorMessage;
+
+            PrintConsoleLog(!string.IsNullOrEmpty(returnMessage)
+                ? returnMessage
+                : "Wiadomość została wysłana z powodzeniem");
+
+            PrintConsoleLog("Kończenie pracy serwisu");
+            PrintConsoleLog("Naciśnij dowolny przycisk...");
+            Console.ReadKey();
 
             if (_container != null)
             {
@@ -78,10 +95,10 @@ namespace WcfDemo.Client
             }
         }
 
-        private static void PrintMessage(string returnMessage)
+        private static void PrintConsoleLog(string logText)
         {
-            Console.Write(returnMessage);
-            Console.ReadKey();
+            var logFormattedText = $"> {DateTime.Now}: {logText}";
+            Console.WriteLine(logFormattedText);
         }
     }
 }

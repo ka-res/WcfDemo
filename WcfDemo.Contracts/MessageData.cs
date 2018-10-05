@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace WcfDemo.Contracts
+namespace WcfDemo
 {
     [DataContract]
     public class MessageRequest

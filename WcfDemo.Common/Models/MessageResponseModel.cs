@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using WcfDemo.Contracts;
+using WcfDemo;
 
 namespace WcfServiceDemo.DataModels
 {
