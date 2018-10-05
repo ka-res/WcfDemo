@@ -6,11 +6,8 @@ namespace WcfDemo.Contracts
     public class MessageRequest
     {
         public string FirstName { get; set; }
-
         public string LastName { get; set; }
-
         public LegalForm LegalForm { get; set; }
-
         public Contact[] Contacts { get; set; }
     }
 
@@ -18,7 +15,6 @@ namespace WcfDemo.Contracts
     public class Contact
     {
         public ContactType ContactType { get; set; }
-
         public string Value { get; set; }
     }
 
@@ -26,7 +22,6 @@ namespace WcfDemo.Contracts
     public class MessageResponse
     {
         public ReturnCode ReturnCode { get; set; }
-
         public string ErrorMessage { get; set; }
     }
 

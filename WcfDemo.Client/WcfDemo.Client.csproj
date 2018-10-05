@@ -73,6 +73,10 @@
       <Project>{A3F62DAF-83A1-46E2-9D04-AD5150C261CD}</Project>
       <Name>WcfDemo.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WcfDemo.Repositories\WcfDemo.Repositories.csproj">
+      <Project>{cef5d731-73e9-4661-8b36-1fc131f7b457}</Project>
+      <Name>WcfDemo.Repositories</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

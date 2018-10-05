@@ -104,6 +104,10 @@
       <Project>{A3F62DAF-83A1-46E2-9D04-AD5150C261CD}</Project>
       <Name>WcfDemo.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WcfDemo.Repositories\WcfDemo.Repositories.csproj">
+      <Project>{CEF5D731-73E9-4661-8B36-1FC131F7B457}</Project>
+      <Name>WcfDemo.Repositories</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

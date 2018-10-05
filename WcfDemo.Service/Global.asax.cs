@@ -4,6 +4,8 @@ using Castle.Windsor;
 using System;
 using WcfDemo.Common;
 using WcfDemo.Contracts;
+using WcfServiceDemo.Repositories.Implementations;
+using WcfServiceDemo.Repositories.Interfaces;
 
 namespace WcfDemo.Service
 {
@@ -18,10 +20,19 @@ namespace WcfDemo.Service
             _container.AddFacility<WcfFacility>()
               .Register
               (
-                //Component.For<IRepository>().ImplementedBy<Repository>(),
-                Component.For<IMessageService>()
-                         .ImplementedBy<MessageService>()
-                         .Named("MessageService")
+                Component
+                    .For<IMessageRequestRepository>()
+                    .ImplementedBy<MessageRequestRepository>(),
+                Component
+                    .For<IMessageResponseRepository>()
+                    .ImplementedBy<MessageResponseRepository>(),
+                Component
+                    .For<IContactRepository>()
+                    .ImplementedBy<ContactRepository>(),
+                Component
+                    .For<IMessageService>()
+                    .ImplementedBy<MessageService>()
+                    .Named("MessageService")
               );
         }
 

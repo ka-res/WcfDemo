@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8B50DAE4-213B-41A1-ACFF-5BA1D1A95386}</ProjectGuid>
+    <ProjectGuid>{50F09404-C185-4665-888E-6194B5B15BAD}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>WcfDemo.Common</RootNamespace>
-    <AssemblyName>WcfDemo.Common</AssemblyName>
+    <RootNamespace>WcfDemo.Database</RootNamespace>
+    <AssemblyName>WcfDemo.Database</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -36,19 +36,15 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.2.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
-      <HintPath>..\packages\BouncyCastle.1.8.2\lib\BouncyCastle.Crypto.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="MailKit, Version=2.0.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
-      <HintPath>..\packages\MailKit.2.0.6\lib\net45\MailKit.dll</HintPath>
-    </Reference>
-    <Reference Include="MimeKit, Version=2.0.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
-      <HintPath>..\packages\MimeKit.2.0.6\lib\net45\MimeKit.dll</HintPath>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,32 +53,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config\ConfigHandler.cs" />
-    <Compile Include="Helpers\SmtpClientHelper.cs" />
-    <Compile Include="Helpers\ValidationHelper.cs" />
-    <Compile Include="Interfaces\IEnumDbModel.cs" />
-    <Compile Include="MessageService.cs" />
-    <Compile Include="Models\ContactModel.cs" />
-    <Compile Include="Models\ContactTypeModel.cs" />
-    <Compile Include="Models\LegalFormModel.cs" />
-    <Compile Include="Models\MessageRequestModel.cs" />
-    <Compile Include="Models\MessageResponseModel.cs" />
-    <Compile Include="Models\ReturnCodeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WcfDemoDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WcfDemo.Contracts\WcfDemo.Contracts.csproj">
-      <Project>{A3F62DAF-83A1-46E2-9D04-AD5150C261CD}</Project>
-      <Name>WcfDemo.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WcfDemo.Repositories\WcfDemo.Repositories.csproj">
-      <Project>{CEF5D731-73E9-4661-8B36-1FC131F7B457}</Project>
-      <Name>WcfDemo.Repositories</Name>
+    <ProjectReference Include="..\WcfDemo.Common\WcfDemo.Common.csproj">
+      <Project>{8B50DAE4-213B-41A1-ACFF-5BA1D1A95386}</Project>
+      <Name>WcfDemo.Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
