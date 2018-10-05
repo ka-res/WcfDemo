@@ -3,10 +3,11 @@ using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using System;
 using WcfDemo.Contracts;
+using System.Web;
 
 namespace WcfDemo.Service
 {
-    public class Global : System.Web.HttpApplication
+    public class Global : HttpApplication
     {
         IWindsorContainer _container;
 

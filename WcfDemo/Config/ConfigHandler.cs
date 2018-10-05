@@ -2,8 +2,8 @@
 {
     public class ConfigHandler
     {
-        private readonly string _username = "xyz";
-        private readonly string _password = "abc";
+        private readonly string _username = "foo@bar";
+        private readonly string _password = "***";
 
         public string GetUserName()
         {

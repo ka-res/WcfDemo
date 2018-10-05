@@ -29,24 +29,20 @@ namespace WcfDemo
 
             try
             {
-                messageResponse = SmtpClientHelper.SendMessage(message);
+                var response = SmtpClientHelper.SendMessage(message);
+                messageResponse = response;
+
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return new MessageResponse
                 {
                     ReturnCode = ReturnCode.InternalError,
-                    ErrorMessage = "Wystąpił błąd związany z dostarczeniem wiadomości e-mail"
+                    ErrorMessage = $"Wystąpił błąd związany z dostarczeniem wiadomości e-mail{Environment.NewLine}{e}"
                 };
             }
 
-            return messageResponse.ReturnCode == ReturnCode.Success
-                ? messageResponse
-                : new MessageResponse
-                    {
-                        ReturnCode = ReturnCode.InternalError,
-                        ErrorMessage = null
-                    };
+            return messageResponse;
         }
     }
 }

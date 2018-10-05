@@ -30,17 +30,49 @@ namespace WcfDemo.Client
 
         static void Main(string[] args)
         {
-            Console.WriteLine("~~~ WcfDemo ~~~");
-            Console.WriteLine("Następuje przygotowanie serwisu");
+            ConsoleKeyInfo input;
+            do
+            {
 
+                Console.WriteLine("=====================================================================");
+                RewriteMain();
+                Console.WriteLine("=====================================================================");
+                Console.WriteLine();
+                input = Console.ReadKey();
+            } while (input.Key != ConsoleKey.Escape);
+
+            if (_container != null)
+            {
+                _container.Dispose();
+            }
+        }
+
+        private static void PrintConsoleLog(string logText)
+        {
+            var logFormattedText = $"> {DateTime.Now}: {logText}";
+            Console.WriteLine(logFormattedText);
+        }
+
+        private static void RewriteMain()
+        {
+            Console.WriteLine("[WCF DEMO]");
+            Console.Write("Ze względu na bardzo uproszczone wymagania," +
+                Environment.NewLine + "proszę pamiętać o wprowadzeniu do pliku ConfigHandler.cs" +
+                Environment.NewLine + "odpowiednich wartości loginu i hasła dla konta GMail," +
+                Environment.NewLine + "dla którego aktywna jest opcja logowania " +
+                Environment.NewLine + "do mniej bezpiecznych aplikacji" +
+                Environment.NewLine + "[ka-res, 2018]" +
+                Environment.NewLine);
+            Console.WriteLine();
+
+            PrintConsoleLog("Następuje przygotowanie serwisu");
             var messageService = _container.Resolve<IMessageService>();
 
             PrintConsoleLog("Wiadomość jest opracowywana");
-
             var messagRequest = new MessageRequest
             {
-                FirstName = "Testowy",
-                LastName = "Janusz",
+                FirstName = "Janusz",
+                LastName = "NOsacz",
                 LegalForm = LegalForm.Person,
                 Contacts = new[]
                 {
@@ -53,11 +85,10 @@ namespace WcfDemo.Client
             };
 
             PrintConsoleLog("Następuje próba wysłania wiadomości");
-            PrintConsoleLog("Oczekiwanie na odpowiedź serwisu");
-
             var message = messageService.Send(messagRequest);
+            PrintConsoleLog("Oczekiwanie na odpowiedź serwisu");
             var returnMessage = string.Empty;
-            
+
             switch (message.ReturnCode)
             {
                 case ReturnCode.InternalError:
@@ -77,28 +108,9 @@ namespace WcfDemo.Client
                     break;
             }
 
-            returnMessage += message.ReturnCode == ReturnCode.Success
-                ? returnMessage
-                : Environment.NewLine + message.ErrorMessage;
-
-            PrintConsoleLog(!string.IsNullOrEmpty(returnMessage)
-                ? returnMessage
-                : "Wiadomość została wysłana z powodzeniem");
-
+            PrintConsoleLog(returnMessage);
             PrintConsoleLog("Kończenie pracy serwisu");
-            PrintConsoleLog("Naciśnij dowolny przycisk...");
-            Console.ReadKey();
-
-            if (_container != null)
-            {
-                _container.Dispose();
-            }
-        }
-
-        private static void PrintConsoleLog(string logText)
-        {
-            var logFormattedText = $"> {DateTime.Now}: {logText}";
-            Console.WriteLine(logFormattedText);
+            PrintConsoleLog($"Wciśnij dowolny przycisk inny od ESC,\r\n\t\t\tby wznowić działanie aplikacji...");
         }
     }
 }
