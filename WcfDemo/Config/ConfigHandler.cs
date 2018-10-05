@@ -1,4 +1,4 @@
-﻿namespace WcfDemo.Common.Config
+﻿namespace WcfDemo
 {
     public class ConfigHandler
     {

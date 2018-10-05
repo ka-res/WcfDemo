@@ -3,8 +3,6 @@ using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using System;
 using WcfDemo.Contracts;
-using WcfServiceDemo.Repositories.Implementations;
-using WcfServiceDemo.Repositories.Interfaces;
 
 namespace WcfDemo.Service
 {

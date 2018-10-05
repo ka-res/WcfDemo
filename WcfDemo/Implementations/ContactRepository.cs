@@ -1,6 +1,4 @@
-﻿using WcfServiceDemo.Repositories.Interfaces;
-
-namespace WcfServiceDemo.Repositories.Implementations
+﻿namespace WcfDemo
 {
     public class ContactRepository : IContactRepository
     {

@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using WcfDemo;
 
-namespace WcfServiceDemo.DataModels
+namespace WcfDemo
 {
-    public class ContactModel : Contact
+    public class MessageResponseModel : MessageResponse
     {
         [Key]
         public int Id { get; set; }

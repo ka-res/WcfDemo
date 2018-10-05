@@ -14,7 +14,7 @@
     <AssemblyName>WcfDemo.Service</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
@@ -85,29 +85,23 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\WcfDemo.Contracts\WcfDemo.Contracts.csproj">
+      <Project>{a3f62daf-83a1-46e2-9d04-ad5150c261cd}</Project>
+      <Name>WcfDemo.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WcfDemo\WcfDemo.csproj">
+      <Project>{84ba5fff-c8ec-4552-9a0a-62cdce521d1f}</Project>
+      <Name>WcfDemo</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WcfDemo.Common\WcfDemo.Common.csproj">
-      <Project>{8B50DAE4-213B-41A1-ACFF-5BA1D1A95386}</Project>
-      <Name>WcfDemo.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WcfDemo.Contracts\WcfDemo.Contracts.csproj">
-      <Project>{A3F62DAF-83A1-46E2-9D04-AD5150C261CD}</Project>
-      <Name>WcfDemo.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WcfDemo.Repositories\WcfDemo.Repositories.csproj">
-      <Project>{CEF5D731-73E9-4661-8B36-1FC131F7B457}</Project>
-      <Name>WcfDemo.Repositories</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

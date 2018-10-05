@@ -1,7 +1,5 @@
 ﻿using System;
-using WcfDemo.Common.Helpers;
 using WcfDemo.Contracts;
-using WcfServiceDemo.Repositories.Interfaces;
 
 namespace WcfDemo
 {
@@ -38,7 +36,7 @@ namespace WcfDemo
                 return new MessageResponse
                 {
                     ReturnCode = ReturnCode.InternalError,
-                    ErrorMessage = ""
+                    ErrorMessage = "Wystąpił błąd związany z dostarczeniem wiadomości e-mail"
                 };
             }
 

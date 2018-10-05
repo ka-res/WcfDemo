@@ -5,7 +5,7 @@ using System;
 using System.ServiceModel;
 using WcfDemo.Contracts;
 
-namespace WcfDemo
+namespace WcfDemo.Client
 {
     class Program
     {
@@ -69,7 +69,7 @@ namespace WcfDemo
                     break;
 
                 case ReturnCode.Success:
-                    returnMessage = null;
+                    returnMessage = "Wiadomość wysłana";
                     break;
 
                 default:

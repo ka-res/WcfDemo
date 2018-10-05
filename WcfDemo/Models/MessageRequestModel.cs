@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using WcfDemo;
 
-namespace WcfServiceDemo.DataModels
+namespace WcfDemo
 {
     public class MessageRequestModel : MessageRequest
     {

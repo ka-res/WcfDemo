@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Net.Mail;
 
-namespace WcfDemo.Common.Helpers
+namespace WcfDemo
 {
     public class ValidationHelper
     {

@@ -1,10 +1,8 @@
 ﻿using MimeKit;
 using MailKit.Net.Smtp;
 using System.Linq;
-using WcfDemo.Common.Config;
-using WcfDemo.Contracts;
 
-namespace WcfDemo.Common.Helpers
+namespace WcfDemo
 {
     public static class SmtpClientHelper
     {

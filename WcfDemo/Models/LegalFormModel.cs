@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using WcfDemo.Common.Interfaces;
 
-namespace WcfServiceDemo.DataModels
+namespace WcfDemo
 {
     public class LegalFormModel : IEnumDbModel
     {

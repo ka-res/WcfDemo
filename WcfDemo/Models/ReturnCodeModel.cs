@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using WcfDemo.Common.Interfaces;
 
-namespace WcfServiceDemo.DataModels
+namespace WcfDemo
 {
-    public class ContactTypeModel : IEnumDbModel
+    public class ReturnCodeModel : IEnumDbModel
     {
         [Key]
         public int Id { get; set; }

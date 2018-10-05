@@ -60,9 +60,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WcfDemo.Common\WcfDemo.Common.csproj">
-      <Project>{8B50DAE4-213B-41A1-ACFF-5BA1D1A95386}</Project>
-      <Name>WcfDemo.Common</Name>
+    <ProjectReference Include="..\WcfDemo\WcfDemo.csproj">
+      <Project>{84ba5fff-c8ec-4552-9a0a-62cdce521d1f}</Project>
+      <Name>WcfDemo</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

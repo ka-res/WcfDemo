@@ -1,4 +1,4 @@
-﻿namespace WcfServiceDemo.Repositories.Interfaces
+﻿namespace WcfDemo
 {
     public interface IMessageRequestRepository
     {

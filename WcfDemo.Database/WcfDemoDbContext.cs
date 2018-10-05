@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using WcfServiceDemo.DataModels;
 
 namespace WcfDemo.Database
 {

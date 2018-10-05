@@ -1,4 +1,4 @@
-﻿namespace WcfDemo.Common.Interfaces
+﻿namespace WcfDemo
 {
     public interface IEnumDbModel
     {
