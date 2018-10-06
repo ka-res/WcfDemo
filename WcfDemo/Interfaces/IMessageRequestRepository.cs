@@ -2,6 +2,6 @@
 {
     public interface IMessageRequestRepository
     {
-        void Add();
+        void Add(MessageRequestModel messageRequestModel);
     }
 }

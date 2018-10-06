@@ -2,9 +2,17 @@
 {
     public class MessageRequestRepository : IMessageRequestRepository
     {
-        public void Add()
+        private readonly IWcfDemoDbContext _wcfDemoDbContext;
+
+        public MessageRequestRepository(IWcfDemoDbContext wcfDemoDatabaseContext)
         {
-            throw new System.NotImplementedException();
+            _wcfDemoDbContext = wcfDemoDatabaseContext;
+        }
+
+        public void Add(MessageRequestModel messageRequestModel)
+        {
+            _wcfDemoDbContext.Set<MessageRequestModel>().Add(messageRequestModel);
+            _wcfDemoDbContext.SaveChanges();
         }
     }
 }

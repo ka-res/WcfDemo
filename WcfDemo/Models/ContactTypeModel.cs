@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WcfDemo
 {
-    public class ContactTypeModel : IEnumDbModel
+    [Table("ContactTypes")]
+    public class ContactTypeModel : BaseModel, IEnumDbModel
     {
         [Key]
         public int Id { get; set; }

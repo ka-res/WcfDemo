@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WcfDemo
 {
-    public class LegalFormModel : IEnumDbModel
+    [Table("LegalForms")]
+    public class LegalFormModel : BaseModel, IEnumDbModel
     {
         [Key]
         public int Id { get; set; }

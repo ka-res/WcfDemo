@@ -19,6 +19,9 @@ namespace WcfDemo.Service
               .Register
               (
                 Component
+                    .For<IWcfDemoDbContext>()
+                    .ImplementedBy<WcfDemoDbContext>(),
+                Component
                     .For<IMessageRequestRepository>()
                     .ImplementedBy<MessageRequestRepository>(),
                 Component

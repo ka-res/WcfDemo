@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WcfDemo
 {
-    public class ReturnCodeModel : IEnumDbModel
+    [Table("ReturnCodes")]
+    public class ReturnCodeModel : BaseModel, IEnumDbModel
     {
         [Key]
         public int Id { get; set; }

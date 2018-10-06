@@ -2,6 +2,6 @@
 {
     public interface IContactRepository
     {
-        void Add();
+        void Add(ContactModel contactModel);
     }
 }

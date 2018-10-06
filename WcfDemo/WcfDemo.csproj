@@ -48,6 +48,12 @@
     <Reference Include="Castle.Windsor, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Windsor.4.1.0\lib\net45\Castle.Windsor.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Apis, Version=1.35.2.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Apis.1.35.2\lib\net45\Google.Apis.dll</HintPath>
     </Reference>
@@ -85,6 +91,7 @@
     <Reference Include="System.Data.Services" />
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Activation" />
@@ -109,7 +116,18 @@
     <Compile Include="Common\IEnumDbModel.cs" />
     <Compile Include="Interfaces\IMessageRequestRepository.cs" />
     <Compile Include="Interfaces\IMessageResponseRepository.cs" />
+    <Compile Include="IWcfDemoDbContext.cs" />
     <Compile Include="MessageService.cs" />
+    <Compile Include="Migrations\201810060924045_Initial.cs" />
+    <Compile Include="Migrations\201810060924045_Initial.Designer.cs">
+      <DependentUpon>201810060924045_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810060924363_a.cs" />
+    <Compile Include="Migrations\201810060924363_a.Designer.cs">
+      <DependentUpon>201810060924363_a.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\ContactTypeModel.cs" />
     <Compile Include="Models\LegalFormModel.cs" />
@@ -117,6 +135,7 @@
     <Compile Include="Models\MessageResponseModel.cs" />
     <Compile Include="Models\ReturnCodeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WcfDemoDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -127,6 +146,14 @@
       <Project>{a3f62daf-83a1-46e2-9d04-ad5150c261cd}</Project>
       <Name>WcfDemo.Contracts</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201810060924045_Initial.resx">
+      <DependentUpon>201810060924045_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810060924363_a.resx">
+      <DependentUpon>201810060924363_a.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

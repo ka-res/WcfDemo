@@ -129,20 +129,6 @@ namespace WcfDemo
             } while (input.Key != ConsoleKey.Escape && counter < 6);
 
             messageRequest.Contacts = contacts;
-            //string 
-            //{
-            //    FirstName = "Janusz",
-            //    LastName = "NOsacz",
-            //    LegalForm = LegalForm.Person,
-            //    Contacts = new[]
-            //    {
-            //        new Contact
-            //        {
-            //            ContactType = ContactType.Email,
-            //            Value = $"kares.inf@gmail.com"
-            //        }
-            //    }
-            //};
 
             PrintConsoleLog("Następuje próba wysłania wiadomości");
             var message = messageService.Send(messageRequest);

@@ -2,6 +2,6 @@
 {
     public interface IMessageResponseRepository
     {
-        void Add();
+        void Add(MessageResponseModel messageResponseModel);
     }
 }

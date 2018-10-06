@@ -2,9 +2,17 @@
 {
     public class ContactRepository : IContactRepository
     {
-        public void Add()
+        private readonly IWcfDemoDbContext _wcfDemoDbContext;
+
+        public ContactRepository(IWcfDemoDbContext wcfDemoDatabaseContext)
         {
-            throw new System.NotImplementedException();
+            _wcfDemoDbContext = wcfDemoDatabaseContext;
+        }
+
+        public void Add(ContactModel contactModel)
+        {
+            _wcfDemoDbContext.Set<ContactModel>().Add(contactModel);
+            _wcfDemoDbContext.SaveChanges();
         }
     }
 }
