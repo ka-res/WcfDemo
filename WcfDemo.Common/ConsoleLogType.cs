@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace WcfDemo.Contracts
+namespace WcfDemo.Common
 {
     public enum ConsoleDisplayType
     {

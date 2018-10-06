@@ -131,7 +131,6 @@
     <Compile Include="Common\IEnumDbModel.cs" />
     <Compile Include="Interfaces\IMessageRequestRepository.cs" />
     <Compile Include="Interfaces\IMessageResponseRepository.cs" />
-    <Compile Include="IWcfDemoDbContext.cs" />
     <Compile Include="MessageService.cs" />
     <Compile Include="Migrations\201810061628347_Initial.cs" />
     <Compile Include="Migrations\201810061628347_Initial.Designer.cs">
@@ -140,6 +139,10 @@
     <Compile Include="Migrations\201810061701508_ReInitial.cs" />
     <Compile Include="Migrations\201810061701508_ReInitial.Designer.cs">
       <DependentUpon>201810061701508_ReInitial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810061832435_AddMailBody.cs" />
+    <Compile Include="Migrations\201810061832435_AddMailBody.Designer.cs">
+      <DependentUpon>201810061832435_AddMailBody.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BaseModel.cs" />
@@ -188,6 +191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810061701508_ReInitial.resx">
       <DependentUpon>201810061701508_ReInitial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810061832435_AddMailBody.resx">
+      <DependentUpon>201810061832435_AddMailBody.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

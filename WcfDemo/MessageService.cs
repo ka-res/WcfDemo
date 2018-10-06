@@ -28,39 +28,48 @@ namespace WcfDemo
                 return messageResponse;
             }
 
-            SendMessage(message, out messageResponse);
-            SaveMessageData(message, messageResponse);
+            SendMessage(message, out var mailBody, out messageResponse);
+
+            if (messageResponse.ReturnCode != ReturnCode.Success)
+            {
+                return messageResponse;
+            }
+            else
+            {
+                SaveMessageData(message, mailBody, messageResponse);
+            }
 
             return messageResponse;
         }
 
-        private void SendMessage(MessageRequest message, out MessageResponse messageResponse)
+        private void SendMessage(MessageRequest message, out string mailBody, out MessageResponse messageResponse)
         {
+            mailBody = string.Empty;
             try
             {
-                var response = SmtpClientHelper.SendMessage(message);
+                var response = SmtpClientHelper.SendMessage(message, out var mailBodyFromFile);
                 messageResponse = response;
+                mailBody = mailBodyFromFile;
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 messageResponse = new MessageResponse
                 {
                     ReturnCode = ReturnCode.InternalError,
-                    ErrorMessage = $"Wystąpił błąd związany z dostarczeniem wiadomości e-mail{Environment.NewLine}{e}"
+                    ErrorMessage = $"Wystąpił błąd związany z połączeniem z usługą Gmail"
                 };
             }
         }
 
-        private void SaveMessageData(MessageRequest message, MessageResponse messageResponse)
+        private void SaveMessageData(MessageRequest message, string mailBody, MessageResponse messageResponse)
         {
             var messageRequestModel = new MessageRequestModel()
             {
                 FirstName = message.FirstName,
                 LastName = message.LastName,
-                IsSoftDeleted = false,
-                LegalFormId = (int)message.LegalForm,
-                SaveDate = DateTime.Now
+                MailBody = mailBody,
+                LegalFormId = (int)message.LegalForm
             };
 
             messageRequestModel.Contacts = message.Contacts
@@ -68,9 +77,7 @@ namespace WcfDemo
                 .Select(x => new ContactModel
                 {
                     ContactTypeId = (int)x?.ContactType,
-                    IsSoftDeleted = false,
                     MessageRequestId = messageRequestModel.Id,
-                    SaveDate = DateTime.Now,
                     Value = x?.Value
                 }).ToList();
 
@@ -82,9 +89,7 @@ namespace WcfDemo
                 var contactModel = new ContactModel
                 {
                     ContactTypeId = (int)contact.ContactType,
-                    IsSoftDeleted = false,
                     MessageRequestId = messageRequestModel.Id,
-                    SaveDate = DateTime.Now,
                     Value = contact.Value
                 };
 
@@ -94,10 +99,8 @@ namespace WcfDemo
             var messageResponseModel = new MessageResponseModel
             {
                 ErrorMessage = messageResponse.ErrorMessage,
-                IsSoftDeleted = false,
                 MessageRequestId = messageRequestModel.Id,
-                ReturnCodeId = (int)messageResponse.ReturnCode,
-                SaveDate = DateTime.Now
+                ReturnCodeId = (int)messageResponse.ReturnCode
             };
 
             _messageResponseRepository.Add(messageResponseModel);

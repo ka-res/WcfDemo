@@ -5,11 +5,12 @@ namespace WcfDemo
 {
     public class ConfigHandler
     {
-        private readonly string fileName = "config.txt";
+        private readonly string credentialsFileName = "config.txt";
+        private readonly string mailBodyFileName = "mailBody.txt";
 
         public string GetUserName()
         {
-            var isFilePresent = CheckOrCreateConfigFile(out string filePath);
+            var isFilePresent = CheckOrCreateConfigFile(credentialsFileName, out string filePath);
             if (!isFilePresent)
             {
                 return null;
@@ -26,7 +27,7 @@ namespace WcfDemo
 
         public string GetPassword()
         {
-            var isFilePresent = CheckOrCreateConfigFile(out string filePath);
+            var isFilePresent = CheckOrCreateConfigFile(credentialsFileName, out string filePath);
             if (!isFilePresent)
             {
                 return null;
@@ -42,12 +43,30 @@ namespace WcfDemo
             }
         }
 
-        private bool CheckOrCreateConfigFile(out string filePath)
+        public string GetMailBody()
+        {
+            var isFilePresent = CheckOrCreateConfigFile(mailBodyFileName , out string filePath);
+            if (!isFilePresent)
+            {
+                return null;
+            }
+
+            using (var fileStream = new FileStream(filePath, FileMode.Open))
+            {
+                using (var streamReader = new StreamReader(fileStream))
+                {
+                    return streamReader.ReadToEnd();
+                }
+            }
+
+        }
+
+        private bool CheckOrCreateConfigFile(string filePath, out string fullFilePath)
         {
             var desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            filePath = Path.Combine(desktopPath, fileName);
+            fullFilePath = Path.Combine(desktopPath, filePath);
 
-            return File.Exists(filePath);
+            return File.Exists(fullFilePath);
         }
     }
 }

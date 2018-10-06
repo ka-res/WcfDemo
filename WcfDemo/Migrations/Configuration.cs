@@ -16,83 +16,61 @@ namespace WcfDemo.Migrations
                 new ContactTypeModel
                 {
                     Description = "Telefon komórkowy",
-                    Value = ContactType.Mobile.ToString(),
-                    IsSoftDeleted = false,
-                    SaveDate = DateTime.Now
+                    Value = ContactType.Mobile.ToString()
                 },
                 new ContactTypeModel
                 {
                     Description = "Fax",
-                    Value = ContactType.Fax.ToString(),
-                    IsSoftDeleted = false,
-                    SaveDate = DateTime.Now
+                    Value = ContactType.Fax.ToString()
                 },
                 new ContactTypeModel
                 {
                     Description = "E-mail",
-                    Value = ContactType.Email.ToString(),
-                    IsSoftDeleted = false,
-                    SaveDate = DateTime.Now
+                    Value = ContactType.Email.ToString()
                 },
                 new ContactTypeModel
                 {
                     Description = "Telefon s³u¿bowy",
-                    Value = ContactType.OfficePhone.ToString(),
-                    IsSoftDeleted = false,
-                    SaveDate = DateTime.Now
+                    Value = ContactType.OfficePhone.ToString()
                 },
                 new ContactTypeModel
                 {
                     Description = "Fax s³u¿bowy",
-                    Value = ContactType.OfficeFax.ToString(),
-                    IsSoftDeleted = false,
-                    SaveDate = DateTime.Now
+                    Value = ContactType.OfficeFax.ToString()
                 },
                 new ContactTypeModel
                 {
                     Description = "E-mail s³u¿bowy",
-                    Value = ContactType.OfficeEmail.ToString(),
-                    IsSoftDeleted = false,
-                    SaveDate = DateTime.Now
+                    Value = ContactType.OfficeEmail.ToString()
                 });
 
             context.LegalForms.AddOrUpdate(x => x.Id,
                 new LegalFormModel
                 {
                     Description = "Osoba",
-                    Value = LegalForm.Person.ToString(),
-                    IsSoftDeleted = false,
-                    SaveDate = DateTime.Now
+                    Value = LegalForm.Person.ToString()
                 },
                 new LegalFormModel
                 {
                     Description = "Firma",
-                    Value = LegalForm.Company.ToString(),
-                    IsSoftDeleted = false,
-                    SaveDate = DateTime.Now
+                    Value = LegalForm.Company.ToString()
                 });
 
             context.ReturnCodes.AddOrUpdate(x => x.Id,
                 new ReturnCodeModel
                 {
                     Description = "Sukces",
-                    Value = ReturnCode.Success.ToString(),
-                    IsSoftDeleted = false,
-                    SaveDate = DateTime.Now
+                    Value = ReturnCode.Success.ToString()
                 },
                 new ReturnCodeModel
                 {
                     Description = "B³¹d walidacji",
-                    Value = ReturnCode.ValidationError.ToString(),
-                    IsSoftDeleted = false,
-                    SaveDate = DateTime.Now
+                    Value = ReturnCode.ValidationError.ToString()
                 },
                 new ReturnCodeModel
                 {
                     Description = "B³¹d wewnêtrzny serwisu",
-                    Value = ReturnCode.InternalError.ToString(),
-                    IsSoftDeleted = false,
-                    SaveDate = DateTime.Now
+                    Value = ReturnCode.InternalError.ToString()
                 });
         }
     }

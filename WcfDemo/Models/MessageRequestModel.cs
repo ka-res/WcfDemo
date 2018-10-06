@@ -21,6 +21,9 @@ namespace WcfDemo
         public virtual LegalFormModel LegalForm { get; set; }
 
         [Required]
+        public string MailBody { get; set; }
+
+        [Required]
         public virtual ICollection<ContactModel> Contacts { get; set; }
     }
 }

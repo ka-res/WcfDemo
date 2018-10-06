@@ -7,13 +7,14 @@ namespace WcfDemo
 {
     public static class SmtpClientHelper
     {
-        public static MessageResponse SendMessage(MessageRequest messageRequest)
+        public static MessageResponse SendMessage(MessageRequest messageRequest, out string mailBody)
         {
-            const string subject = "WcfDemo Sample Header";
-            const string body = "To wiadomość testowa wysłana za pomocą serwisu WcfDemo (ka-res, 2018)";
+            var configurator = new ConfigHandler();
+
+            const string subject = "WcfDemo Sample Header by ka_res";
             const string host = "smtp.gmail.com";
 
-            var configurator = new ConfigHandler();
+            mailBody = configurator.GetMailBody();
 
             var emailAddress = messageRequest.LegalForm == LegalForm.Person
                 ? messageRequest.Contacts.Single(x => x?.ContactType == ContactType.Email).Value
@@ -24,7 +25,7 @@ namespace WcfDemo
             eMail.To.Add(new MailAddress(emailAddress));
             eMail.IsBodyHtml = true;
             eMail.Subject = subject;
-            eMail.Body = body;
+            eMail.Body = mailBody;
 
             var smtpClient = new SmtpClient
             {
@@ -52,7 +53,7 @@ namespace WcfDemo
             return new MessageResponse
             {
                 ReturnCode = ReturnCode.Success,
-                ErrorMessage = "Wiadomośc została pomyślnie wysłana"
+                ErrorMessage = null
             };
         }
     }

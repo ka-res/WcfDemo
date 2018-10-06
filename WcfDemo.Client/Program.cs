@@ -3,6 +3,7 @@ using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using System;
 using System.ServiceModel;
+using WcfDemo.Common;
 using WcfDemo.Contracts;
 
 namespace WcfDemo

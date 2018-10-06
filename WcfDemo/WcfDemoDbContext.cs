@@ -1,6 +1,17 @@
+using System;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Linq;
+
 namespace WcfDemo
 {
-    using System.Data.Entity;
+    public interface IWcfDemoDbContext
+    {
+        Database Database { get; }
+        DbEntityEntry Entry(object entity);
+        IDbSet<TEntity> Set<TEntity>() where TEntity : class;
+        int SaveChanges();
+    }
 
     public class WcfDemoDbContext : DbContext, IWcfDemoDbContext
     {
@@ -21,6 +32,20 @@ namespace WcfDemo
         IDbSet<TEntity> IWcfDemoDbContext.Set<TEntity>()
         {
             return base.Set<TEntity>();
+        }
+
+        public override int SaveChanges()
+        {
+            var entities = ChangeTracker.Entries<IBaseModel>();
+            if (entities != null)
+            {
+                foreach (var entry in entities.Where(x => x.State != EntityState.Unchanged))
+                {
+                    entry.Entity.IsSoftDeleted = false;
+                    entry.Entity.SaveDate = DateTime.Now;
+                }
+            }
+            return base.SaveChanges();
         }
     }
 }
