@@ -16,8 +16,8 @@ namespace WcfDemo
             var configurator = new ConfigHandler();
 
             var emailAddress = messageRequest.LegalForm == LegalForm.Person
-                ? messageRequest.Contacts.Single(x => x.ContactType == ContactType.Email).Value
-                : messageRequest.Contacts.Single(x => x.ContactType == ContactType.OfficeEmail).Value;
+                ? messageRequest.Contacts.Single(x => x?.ContactType == ContactType.Email).Value
+                : messageRequest.Contacts.Single(x => x?.ContactType == ContactType.OfficeEmail).Value;
             
             var eMail = new MailMessage();
             eMail.From = new MailAddress(configurator.GetUserName());

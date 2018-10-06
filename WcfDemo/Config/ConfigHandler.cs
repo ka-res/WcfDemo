@@ -1,18 +1,53 @@
-﻿namespace WcfDemo
+﻿using System;
+using System.IO;
+
+namespace WcfDemo
 {
     public class ConfigHandler
     {
-        private readonly string _username = "foo@bar";
-        private readonly string _password = "***";
+        private readonly string fileName = "config.txt";
 
         public string GetUserName()
         {
-            return _username;
+            var isFilePresent = CheckOrCreateConfigFile(out string filePath);
+            if (!isFilePresent)
+            {
+                return null;
+            }
+
+            using (var fileStream = new FileStream(filePath, FileMode.Open))
+            {
+                using (var streamReader = new StreamReader(fileStream))
+                {
+                    return streamReader.ReadLine();
+                }
+            }
         }
 
         public string GetPassword()
         {
-            return _password;
+            var isFilePresent = CheckOrCreateConfigFile(out string filePath);
+            if (!isFilePresent)
+            {
+                return null;
+            }
+
+            using (var fileStream = new FileStream(filePath, FileMode.Open))
+            {
+                using (var streamReader = new StreamReader(fileStream))
+                {
+                    streamReader.ReadLine();
+                    return streamReader.ReadLine();
+                }
+            }
+        }
+
+        private bool CheckOrCreateConfigFile(out string filePath)
+        {
+            var desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            filePath = Path.Combine(desktopPath, fileName);
+
+            return File.Exists(filePath);
         }
     }
 }

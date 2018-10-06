@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net.Mail;
 
 namespace WcfDemo
@@ -117,19 +118,25 @@ namespace WcfDemo
 
         private static string ValidateContactTypeQuantity(MessageRequest message, ContactType contactType)
         {
-            var chosenContactsCount = message.Contacts.Where(x => x.ContactType == contactType).Count();
+            var chosenContactsCount = message.Contacts.Where(x => x?.ContactType == contactType).Count();
             return chosenContactsCount == 1
                 ? null
-                : $"Nie istnieje dokładnie jeden wpis o rodzaju {contactType.ToString()} w kontaktach. Jest ich {chosenContactsCount}";
+                : $"Nie istnieje dokładnie jeden wpis o żądanym rodzaju w kontaktach. Jest ich {chosenContactsCount}";
         }
 
         private static string ValidateEmailFormat(MessageRequest message, ContactType contactType)
         {
-            var eMail = message.Contacts.Single(x => x.ContactType == contactType).Value;
-            var address = new MailAddress(eMail);
-            return address.Address == eMail
-                ? null
-                : $"Wprowadzono niepoprawny format adresu e-mail {eMail}";
+            var eMail = message.Contacts.Single(x => x?.ContactType == contactType).Value;
+            try
+            {
+                var address = new MailAddress(eMail);
+                return null;
+
+            }
+            catch (Exception)
+            {
+                return $"Wprowadzono niepoprawny format adresu e-mail: {eMail}";
+            }
         }
 
         private static string ValidateCompanyLastName(MessageRequest message)
