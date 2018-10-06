@@ -18,8 +18,7 @@ namespace WcfDemo
         public WcfDemoDbContext()
             : base("WcfDemoDbContext")
         {
-            //Database.SetInitializer(new CreateDatabaseIfNotExists<WcfDemoDbContext>());
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<WcfDemoDbContext>());
+            Database.SetInitializer(new CreateDatabaseIfNotExists<WcfDemoDbContext>());
         }
 
         public DbSet<ContactModel> Contacts { get; set; }

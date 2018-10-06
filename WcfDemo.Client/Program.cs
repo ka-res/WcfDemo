@@ -49,8 +49,12 @@ namespace WcfDemo
                 Environment.NewLine + "oraz hasłem w drugiej do konta" +
                 Environment.NewLine + "dla którego aktywna jest opcja logowania " +
                 Environment.NewLine + "do mniej bezpiecznych aplikacji" +
+                Environment.NewLine +
                 Environment.NewLine + "i nie ma wielostopniowego logowania." +
+                Environment.NewLine + "Plik mailBody.txt w tej samej lokalizacji" +
+                Environment.NewLine + "powinien zawierać przykładową treść e-maila." +
                 Environment.NewLine + "[ka_res, 2018]" +
+                Environment.NewLine + "==============================================" +
                 Environment.NewLine);
             Console.WriteLine();
         }
@@ -196,12 +200,12 @@ namespace WcfDemo
                 contacts[counter] = contact;
 
                 PrintConsoleLog($"Wciśnij dowolny przycisk inny od ESC,\r\n\t\t\tby dodać nową inforamcję kontaktową...", ConsoleDisplayType.Option);
-                Console.Write("\n>> ");
                 input = Console.ReadKey();
+                Console.WriteLine();
                 counter++;
                 if (counter == contactCountLimitNumber)
                 {
-                    PrintConsoleLog($"Osiągnięto zaplanowany limit {contactCountLimitNumber} kontaktów", ConsoleDisplayType.Information);
+                    PrintConsoleLog($"Osiągnięto zaplanowany limit {contactCountLimitNumber} kontaktów", ConsoleDisplayType.Notification);
                 }
             } while (input.Key != ConsoleKey.Escape && counter < contactCountLimitNumber);
 
@@ -238,11 +242,12 @@ namespace WcfDemo
             do
             {
 
-                Console.WriteLine("=====================================================================");
+                Console.WriteLine("==============================================");
                 RewriteMain();
-                Console.WriteLine("=====================================================================");
+                Console.WriteLine("==============================================");
                 Console.WriteLine();
                 input = Console.ReadKey();
+                Console.WriteLine();
             } while (input.Key != ConsoleKey.Escape);
         }
 

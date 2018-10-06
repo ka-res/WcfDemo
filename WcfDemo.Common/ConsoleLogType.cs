@@ -33,7 +33,10 @@ namespace WcfDemo.Common
         Option = 8,
 
         [Description("INST")]
-        Instruction = 9
+        Instruction = 9,
+
+        [Description("NOTI")]
+        Notification = 10
     }
 
     public class ConsoleDisplayHelper
@@ -81,6 +84,10 @@ namespace WcfDemo.Common
 
                 case ConsoleDisplayType.ValidationError:
                     return ConsoleColor.Red;
+
+                case ConsoleDisplayType.Notification:
+                    return ConsoleColor.DarkYellow;
+
 
                 default:
                     return ConsoleColor.Gray;
