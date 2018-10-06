@@ -19,6 +19,6 @@ namespace WcfDemo
         [Required]
         public int MessageRequestId { get; set; }
         [ForeignKey("MessageRequestId")]
-        public virtual MessageResponseModel MessageRequest { get; set; }
+        public virtual MessageRequestModel MessageRequest { get; set; }
     }
 }

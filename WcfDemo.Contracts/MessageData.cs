@@ -37,36 +37,36 @@ namespace WcfDemo
     public enum ReturnCode
     {
         [EnumMember]
-        Success = 0,
+        Success = 1,
         [EnumMember]
-        ValidationError = 1,
+        ValidationError = 2,
         [EnumMember]
-        InternalError = 2
+        InternalError = 3
     }
 
     [DataContract]
     public enum LegalForm
     {
         [EnumMember]
-        Person = 0,
+        Person = 1,
         [EnumMember]
-        Company = 1
+        Company = 2
     }
 
     [DataContract]
     public enum ContactType
     {
         [EnumMember]
-        Mobile = 0,
+        Mobile = 1,
         [EnumMember]
-        Fax = 1,
+        Fax = 2,
         [EnumMember]
-        Email = 2,
+        Email = 3,
         [EnumMember]
-        OfficePhone = 3,
+        OfficePhone = 4,
         [EnumMember]
-        OfficeFax = 4,
+        OfficeFax = 5,
         [EnumMember]
-        OfficeEmail = 5
+        OfficeEmail = 6
     }
 }

@@ -28,8 +28,8 @@ namespace WcfDemo
                 return messageResponse;
             }
 
-            //SendMessage(message, out messageResponse);
-            //SaveMessageData(message, messageResponse);            
+            SendMessage(message, out messageResponse);
+            SaveMessageData(message, messageResponse);
 
             return messageResponse;
         }

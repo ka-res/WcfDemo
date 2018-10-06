@@ -5,19 +5,18 @@ namespace WcfDemo
     public class WcfDemoDbContext : DbContext, IWcfDemoDbContext
     {
         public WcfDemoDbContext()
-            : base("name=WcfDemoDbContext")
+            : base("WcfDemoDbContext")
         {
-
-            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<WcfDemoDbContext, Configuration>());
-            Database.SetInitializer(new CreateDatabaseIfNotExists<WcfDemoDbContext>());
-            //Database.SetInitializer(new DropCreateDatabaseAlways<WcfDemoDbContext>());
+            //Database.SetInitializer(new CreateDatabaseIfNotExists<WcfDemoDbContext>());
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<WcfDemoDbContext>());
         }
 
-        public virtual DbSet<ContactModel> Contacts { get; set; }
-        public virtual DbSet<MessageRequestModel> MessageRequests { get; set; }
-        public virtual DbSet<MessageResponseModel> MessageResponses { get; set; }
-        public virtual DbSet<ContactTypeModel> ContactTypes { get; set; }
-        public virtual DbSet<LegalFormModel> LegalForms { get; set; }
+        public DbSet<ContactModel> Contacts { get; set; }
+        public DbSet<MessageRequestModel> MessageRequests { get; set; }
+        public DbSet<MessageResponseModel> MessageResponses { get; set; }
+        public DbSet<ContactTypeModel> ContactTypes { get; set; }
+        public DbSet<LegalFormModel> LegalForms { get; set; }
+        public DbSet<ReturnCodeModel> ReturnCodes { get; set; }
 
         IDbSet<TEntity> IWcfDemoDbContext.Set<TEntity>()
         {

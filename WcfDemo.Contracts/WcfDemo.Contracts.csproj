@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleLogType.cs" />
     <Compile Include="IMessageService.cs" />
     <Compile Include="MessageData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

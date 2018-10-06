@@ -12,6 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -118,13 +133,13 @@
     <Compile Include="Interfaces\IMessageResponseRepository.cs" />
     <Compile Include="IWcfDemoDbContext.cs" />
     <Compile Include="MessageService.cs" />
-    <Compile Include="Migrations\201810060924045_Initial.cs" />
-    <Compile Include="Migrations\201810060924045_Initial.Designer.cs">
-      <DependentUpon>201810060924045_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201810061628347_Initial.cs" />
+    <Compile Include="Migrations\201810061628347_Initial.Designer.cs">
+      <DependentUpon>201810061628347_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810060924363_a.cs" />
-    <Compile Include="Migrations\201810060924363_a.Designer.cs">
-      <DependentUpon>201810060924363_a.cs</DependentUpon>
+    <Compile Include="Migrations\201810061701508_ReInitial.cs" />
+    <Compile Include="Migrations\201810061701508_ReInitial.Designer.cs">
+      <DependentUpon>201810061701508_ReInitial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BaseModel.cs" />
@@ -138,7 +153,6 @@
     <Compile Include="WcfDemoDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -148,11 +162,32 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201810060924045_Initial.resx">
-      <DependentUpon>201810060924045_Initial.cs</DependentUpon>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\WcfDemoDbContext.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\WcfDemoDbContext_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>WcfDemoDbContext.mdf</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201810061628347_Initial.resx">
+      <DependentUpon>201810061628347_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810060924363_a.resx">
-      <DependentUpon>201810060924363_a.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810061701508_ReInitial.resx">
+      <DependentUpon>201810061701508_ReInitial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
