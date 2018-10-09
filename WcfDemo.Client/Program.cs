@@ -2,6 +2,7 @@
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using System;
+using System.Configuration;
 using System.ServiceModel;
 using WcfDemo.Common;
 using WcfDemo.Contracts;
@@ -44,7 +45,7 @@ namespace WcfDemo
         {
             Console.WriteLine("[WCF DEMO]");
             Console.Write("Ze względu na bardzo uproszczone wymagania" +
-                Environment.NewLine + "na pulpicie należy utworzyć plik config.txt" +
+                Environment.NewLine + "na pulpicie należy utworzyć plik credentials.txt" +
                 Environment.NewLine + "z nazwą e-mail nadawcy w pierwszej linijce" +
                 Environment.NewLine + "oraz hasłem w drugiej do konta" +
                 Environment.NewLine + "dla którego aktywna jest opcja logowania " +
@@ -74,8 +75,7 @@ namespace WcfDemo
             {
                 PrintConsoleLog("Wprowadź rodzaj kontaktu", ConsoleDisplayType.Instruction);
                 PrintConsoleLog("Dostępne rodzaje to:\r\n\t\t\t\t1 - osoba\r\n\t\t\t\t2 - firma", ConsoleDisplayType.Option);
-                Console.Write("\n>> ");
-                legalForm = Console.ReadLine();
+                legalForm = AskForInput();
 
                 isInvalid = !int.TryParse(legalForm, out int legalFormVerified) ||
                         Convert.ToInt32(legalForm) > legalFormEnumCount ||
@@ -95,8 +95,7 @@ namespace WcfDemo
             if (legalFormEnum == LegalForm.Person)
             {
                 PrintConsoleLog("Wprowadź imię kontaktu", ConsoleDisplayType.Instruction);
-                Console.Write("\n>> ");
-                firstName = Console.ReadLine();
+                firstName = AskForInput();
                 messageRequest.FirstName = firstName;
             }
 
@@ -104,8 +103,7 @@ namespace WcfDemo
             PrintConsoleLog(legalFormEnum == LegalForm.Person
                 ? "Wprowadź nazwisko kontaktu:"
                 : "Wprowadź nazwę firmy", ConsoleDisplayType.Instruction);
-            Console.Write("\n>> ");
-            lastName = Console.ReadLine();
+            lastName = AskForInput();
             messageRequest.LastName = lastName;
 
             AskForContacts(messageRequest);
@@ -147,8 +145,7 @@ namespace WcfDemo
             do
             {
                 PrintConsoleLog("Podaj maksymalną ilość kontaktów, które chcesz wprowadzić", ConsoleDisplayType.Instruction);
-                Console.Write("\n>> ");
-                contactCountLimit = Console.ReadLine();
+                contactCountLimit = AskForInput();
 
                 isInvalidCountLimit = !int.TryParse(contactCountLimit, out int contactCountLimitVerified);
                 if (isInvalidCountLimit)
@@ -177,8 +174,7 @@ namespace WcfDemo
                     PrintConsoleLog("Podaj rodzaj informacji kontakowej", ConsoleDisplayType.Instruction);
                     PrintConsoleLog("Dostępne rodzaje to:\r\n\t\t\t\t1 - telefon komórkowy\r\n\t\t\t\t2 - fax\r\n\t\t\t\t3 - e-mail\r\n\t\t\t\t" +
                         "4 - telefon służbowy\r\n\t\t\t\t5 - fax służbowy\r\n\t\t\t\t6 - e-mail służbowy", ConsoleDisplayType.Option);
-                    Console.Write("\n>> ");
-                    contactType = Console.ReadLine();
+                    contactType = AskForInput();
                     isInvalidContactType = !int.TryParse(contactType, out int contactTypeVerified) ||
                             Convert.ToInt32(contactType) > contactTypeEnumCount ||
                             Convert.ToInt32(contactType) < 1;
@@ -194,8 +190,7 @@ namespace WcfDemo
                                
                 PrintConsoleLog("Podaj wartość informacji kontaktowej", ConsoleDisplayType.Instruction);
                 string value;
-                Console.Write("\n>> ");
-                value = Console.ReadLine();
+                value = AskForInput();
                 contact.Value = value;
                 contacts[counter] = contact;
 
@@ -231,9 +226,16 @@ namespace WcfDemo
                         {
                             Endpoint = WcfEndpoint
                                 .BoundTo(new BasicHttpBinding())
-                                .At("http://localhost:62505/MessageService.svc")
+                                .At(RetrieveHostAddress())
                         })
                 );
+        }
+
+        private static string AskForInput()
+        {
+            Console.Write("\n>> ");
+
+            return Console.ReadLine();
         }
 
         private static void DisplayAppInterface()
@@ -249,6 +251,11 @@ namespace WcfDemo
                 input = Console.ReadKey();
                 Console.WriteLine();
             } while (input.Key != ConsoleKey.Escape);
+        }
+
+        private static string RetrieveHostAddress()
+        {
+            return ConfigurationManager.AppSettings["hostAddress"];
         }
 
         private static void DisposeDiContainer()

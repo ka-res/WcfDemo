@@ -159,6 +159,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WcfDemo.Common\WcfDemo.Common.csproj">
+      <Project>{353522a8-704c-473a-8dc7-fa71069dcca7}</Project>
+      <Name>WcfDemo.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WcfDemo.Contracts\WcfDemo.Contracts.csproj">
       <Project>{a3f62daf-83a1-46e2-9d04-ad5150c261cd}</Project>
       <Name>WcfDemo.Contracts</Name>

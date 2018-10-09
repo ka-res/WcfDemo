@@ -2,6 +2,7 @@
 using System.Net.Mail;
 using System.Net;
 using System;
+using System.Configuration;
 
 namespace WcfDemo
 {
@@ -13,7 +14,7 @@ namespace WcfDemo
 
             const string subject = "WcfDemo Sample Header by ka_res";
             const string host = "smtp.gmail.com";
-
+            
             mailBody = configurator.GetMailBody();
 
             var emailAddress = messageRequest.LegalForm == LegalForm.Person
@@ -33,7 +34,7 @@ namespace WcfDemo
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(configurator.GetUserName(), configurator.GetPassword()),
+                Credentials = new NetworkCredential(eMail.From.Address, configurator.GetPassword()),
                 Host = host
             };
 
